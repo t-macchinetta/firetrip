@@ -95,24 +95,6 @@ $(function () {
     var $comment = $('#comment');
 
     var press = 0;
-    // ランダム文字列生成用関数
-    // function getUniqueStr(myStrong) {
-    //     var strong = 10;
-    //     if (myStrong) strong = myStrong;
-    //     return new Date().getTime().toString(16) + Math.floor(strong * Math.random()).toString(16)
-    // }
-
-    // コメント欄の大きさを調整する関数
-    // function comment_resize() {
-    //     var w = $('#output').width();
-    //     // alert(w);
-    //     w = w - 115;
-    //     // alert(w);
-    //     $('.comment_block').width(w + "px");
-    // }
-    // $(window).on('load resize', function () {
-    //     comment_resize();
-    // });
 
     // 日付設定用関数
     function addDate() {
@@ -161,7 +143,6 @@ $(function () {
     function articleShow() {
         articleRef.on('value', function (snapshot) {
             var str = "";
-            // var $arr = "";
             snapshot.forEach(function (child) {
                 // ↓ユニークキー取得
                 var k = child.key;
@@ -298,14 +279,6 @@ $(function () {
 
     // 旅データ追加登録
     $('#input').on('click', '.a_send', function () {
-        // if (showStatus == 0) {
-        // 旅追加
-        // var $title = $('#title');
-        // var $depart = $('#depart');
-        // var $arrive = $('#arrive');
-        // var $cost = $('#cost');
-        // var $text = $('#text');
-
         articleRef.push({
             title: $title.val(),
             depart: $depart.val(),
@@ -324,15 +297,6 @@ $(function () {
 
     // recordデータ追加登録
     $('#input').on('click', '.r_send', function () {
-
-        // record追加
-        // var $fromTime = $('#fromTime');
-        // var $from = $('#from');
-        // var $toTime = $('#toTime');
-        // var $to = $('#to');
-        // var $how = $('#how');
-        // var $comment = $('#comment');
-
         var json_r = push_JSON(nowRecord, $fromTime.val(), $from.val(), $toTime.val(), $to.val(), $how.val(), $comment.val());
         // jsonを追加
         var editRef = firebase.database().ref("/articles/" + show_id);
@@ -835,14 +799,9 @@ $(function () {
 
     // タイトルクリックで詳細表示
     $('#output').on('click', '.card-header', function () {
-        // var id = $(this).parent().parent().attr("id");
         if (editStatus == 0) {
             var id = $(this).parent().attr("id");
-            // alert(id);
             $('#' + id).find('.card-block').slideToggle();
-            // $('#'+id).find('.card-text').slideToggle();
-            // $('#'+id).find('.btn').slideToggle();
-            // $('#'+id).find('.title').html(title);
         }
     });
 
